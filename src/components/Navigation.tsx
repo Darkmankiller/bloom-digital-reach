@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import LogoProcessor from "./LogoProcessor";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,9 +24,9 @@ const Navigation = () => {
             className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => navigate("/")}
           >
-            <img 
-              src="/lovable-uploads/3e7549b0-2466-4ace-96db-dbec170d41a4.png" 
-              alt="PixelBloom Logo" 
+            <LogoProcessor
+              originalSrc="/lovable-uploads/3e7549b0-2466-4ace-96db-dbec170d41a4.png"
+              alt="PixelBloom Logo"
               className="w-8 h-8 object-contain"
             />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
