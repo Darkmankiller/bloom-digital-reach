@@ -228,12 +228,16 @@ const Contact = () => {
                       value={formData.telegramChatId}
                       onChange={(e) => handleInputChange("telegramChatId", e.target.value)}
                       className="bg-slate-800 border-slate-600 text-white"
-                      placeholder="e.g., 123456789 or @username"
+                      placeholder="Your numeric chat ID (e.g., 123456789)"
                       required
                     />
-                    <p className="text-sm text-gray-400">
-                      Send /start to @PixelBloomBot first, then use your chat ID or username
-                    </p>
+                    <div className="text-sm text-gray-400 space-y-1">
+                      <p>To get your chat ID:</p>
+                      <p>1. Start a chat with @CollegePrintBot</p>
+                      <p>2. Send any message to the bot</p>
+                      <p>3. Visit: https://api.telegram.org/bot8178208966:AAF3DrWk7afaNhB3mjaZYKXGNa33WdxsGyQ/getUpdates</p>
+                      <p>4. Look for "chat":{"id": YOUR_CHAT_ID in the response</p>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
