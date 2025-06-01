@@ -21,22 +21,11 @@ const Contact = () => {
     company: "",
     service: "",
     budget: "",
-    message: "",
-    telegramChatId: ""
+    message: ""
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.telegramChatId) {
-      toast({
-        title: "Telegram Chat ID Required",
-        description: "Please provide your Telegram Chat ID to receive the message.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -50,11 +39,11 @@ const Contact = () => {
         message: formData.message
       };
 
-      await sendContactToTelegram(contactData, formData.telegramChatId);
+      await sendContactToTelegram(contactData, "7056495954");
       
       toast({
         title: "Message Sent!",
-        description: "Thank you for your inquiry. The message has been sent to Telegram and we'll get back to you within 24 hours.",
+        description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
       });
       
       // Reset form
@@ -65,8 +54,7 @@ const Contact = () => {
         company: "",
         service: "",
         budget: "",
-        message: "",
-        telegramChatId: ""
+        message: ""
       });
     } catch (error) {
       console.error('Error sending to Telegram:', error);
@@ -219,25 +207,6 @@ const Contact = () => {
                           <SelectItem value="discuss">Let's discuss</SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="telegramChatId" className="text-white">Your Telegram Chat ID *</Label>
-                    <Input
-                      id="telegramChatId"
-                      value={formData.telegramChatId}
-                      onChange={(e) => handleInputChange("telegramChatId", e.target.value)}
-                      className="bg-slate-800 border-slate-600 text-white"
-                      placeholder="Your numeric chat ID (e.g., 123456789)"
-                      required
-                    />
-                    <div className="text-sm text-gray-400 space-y-1">
-                      <p>To get your chat ID:</p>
-                      <p>1. Start a chat with @CollegePrintBot</p>
-                      <p>2. Send any message to the bot</p>
-                      <p>3. Visit: https://api.telegram.org/bot8178208966:AAF3DrWk7afaNhB3mjaZYKXGNa33WdxsGyQ/getUpdates</p>
-                      <p>4. Look for "chat":{"id": YOUR_CHAT_ID in the response</p>
                     </div>
                   </div>
 
