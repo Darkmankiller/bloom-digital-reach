@@ -10,6 +10,7 @@ import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { sendContactToTelegram, ContactFormData } from "@/utils/telegramBot";
+import SEO from "@/components/SEO";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -101,6 +102,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
+      <SEO
+        title="Contact PixelBloom - Get Your Free Website Consultation"
+        description="Contact PixelBloom for professional website development and SEO services. Free consultation available. Get a quote for your project today."
+        keywords="contact web developer, website consultation, get quote, web development contact, SEO consultation"
+        canonical="https://pixelbloom.com/contact"
+      />
       <Navigation />
       
       {/* Hero Section */}

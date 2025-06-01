@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Code, Search, Smartphone, Zap, TrendingUp, Monitor, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import SEO from "@/components/SEO";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -91,6 +92,12 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
+      <SEO
+        title="Web Development & SEO Services - PixelBloom"
+        description="Comprehensive web development and digital marketing solutions. Website development, SEO optimization, Google My Business, and website maintenance services."
+        keywords="web development services, SEO services, website maintenance, Google My Business, digital marketing, responsive web design"
+        canonical="https://pixelbloom.com/services"
+      />
       <Navigation />
       
       {/* Hero Section */}
