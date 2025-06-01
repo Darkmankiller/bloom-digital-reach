@@ -1,4 +1,3 @@
-
 import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,9 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactToTelegram, ContactFormData } from "@/utils/telegramBot";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,25 +20,63 @@ const Contact = () => {
     company: "",
     service: "",
     budget: "",
-    message: ""
+    message: "",
+    telegramChatId: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
-    });
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      service: "",
-      budget: "",
-      message: ""
-    });
+    
+    if (!formData.telegramChatId) {
+      toast({
+        title: "Telegram Chat ID Required",
+        description: "Please provide your Telegram Chat ID to receive the message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const contactData: ContactFormData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service: formData.service,
+        budget: formData.budget,
+        message: formData.message
+      };
+
+      await sendContactToTelegram(contactData, formData.telegramChatId);
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your inquiry. The message has been sent to Telegram and we'll get back to you within 24 hours.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        budget: "",
+        message: "",
+        telegramChatId: ""
+      });
+    } catch (error) {
+      console.error('Error sending to Telegram:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -183,6 +222,21 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="telegramChatId" className="text-white">Your Telegram Chat ID *</Label>
+                    <Input
+                      id="telegramChatId"
+                      value={formData.telegramChatId}
+                      onChange={(e) => handleInputChange("telegramChatId", e.target.value)}
+                      className="bg-slate-800 border-slate-600 text-white"
+                      placeholder="e.g., 123456789 or @username"
+                      required
+                    />
+                    <p className="text-sm text-gray-400">
+                      Send /start to @PixelBloomBot first, then use your chat ID or username
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="message" className="text-white">Project Details *</Label>
                     <Textarea
                       id="message"
@@ -197,9 +251,10 @@ const Contact = () => {
                   <Button 
                     type="submit"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-6 text-lg transition-all duration-200 hover:scale-105"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-6 text-lg transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                     <Send className="ml-2 w-5 h-5" />
                   </Button>
                 </form>
