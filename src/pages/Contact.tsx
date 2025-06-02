@@ -186,16 +186,16 @@ const Contact = () => {
                     <div className="space-y-2">
                       <Label htmlFor="service" className="text-white">Service Needed</Label>
                       <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white">
+                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-600">
-                          <SelectItem value="website">Website Development</SelectItem>
-                          <SelectItem value="seo">SEO Optimization</SelectItem>
-                          <SelectItem value="gmb">Google My Business</SelectItem>
-                          <SelectItem value="maintenance">Website Maintenance</SelectItem>
-                          <SelectItem value="multiple">Multiple Services</SelectItem>
-                          <SelectItem value="consultation">Free Consultation</SelectItem>
+                        <SelectContent className="bg-slate-800 border-slate-600 z-50">
+                          <SelectItem value="website" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">Website Development</SelectItem>
+                          <SelectItem value="seo" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">SEO Optimization</SelectItem>
+                          <SelectItem value="gmb" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">Google My Business</SelectItem>
+                          <SelectItem value="maintenance" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">Website Maintenance</SelectItem>
+                          <SelectItem value="multiple" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">Multiple Services</SelectItem>
+                          <SelectItem value="consultation" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white">Free Consultation</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -203,15 +203,15 @@ const Contact = () => {
                     <div className="space-y-2">
                       <Label htmlFor="budget" className="text-white">Budget Range</Label>
                       <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
-                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white">
+                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-600">
-                          <SelectItem value="1k-3k">$1,000 - $3,000</SelectItem>
-                          <SelectItem value="3k-5k">$3,000 - $5,000</SelectItem>
-                          <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="10k+">$10,000+</SelectItem>
-                          <SelectItem value="discuss">Let's discuss</SelectItem>
+                        <SelectContent className="bg-slate-800 border-slate-600 z-50">
+                          <SelectItem value="1k-3k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white">$1,000 - $3,000</SelectItem>
+                          <SelectItem value="3k-5k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white">$3,000 - $5,000</SelectItem>
+                          <SelectItem value="5k-10k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white">$5,000 - $10,000</SelectItem>
+                          <SelectItem value="10k+" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white">$10,000+</SelectItem>
+                          <SelectItem value="discuss" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white">Let's discuss</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -266,24 +266,24 @@ const Contact = () => {
                 </div>
               </div>
 
-              <Card className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-slate-700">
+              <Card className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border-purple-500/30">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-bold text-white mb-4">Why Choose PixelBloom?</h3>
                   <ul className="space-y-3 text-gray-300">
                     <li className="flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3"></div>
                       Free consultation & project quote
                     </li>
                     <li className="flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3"></div>
                       Fast response time (within 24 hours)
                     </li>
                     <li className="flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3"></div>
                       Transparent pricing with no hidden fees
                     </li>
                     <li className="flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3"></div>
                       Ongoing support and maintenance
                     </li>
                   </ul>
@@ -295,6 +295,50 @@ const Contact = () => {
       </section>
     </div>
   );
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const contactData: ContactFormData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service: formData.service,
+        budget: formData.budget,
+        message: formData.message
+      };
+
+      await sendContactToTelegram(contactData, "7056495954");
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        budget: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Error sending to Telegram:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 };
 
 export default Contact;
