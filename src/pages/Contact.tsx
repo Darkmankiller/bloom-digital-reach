@@ -207,10 +207,10 @@ const Contact = () => {
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent className="bg-slate-800 border-slate-600 z-50">
-                          <SelectItem value="1k-3k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$1,000 - $3,000</SelectItem>
-                          <SelectItem value="3k-5k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$3,000 - $5,000</SelectItem>
-                          <SelectItem value="5k-10k" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="10k+" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$10,000+</SelectItem>
+                          <SelectItem value="₹10,000-₹15,000" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$1,000 - $3,000</SelectItem>
+                          <SelectItem value="₹15,000-₹20,000" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$3,000 - $5,000</SelectItem>
+                          <SelectItem value="₹25,000-₹30,000" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$5,000 - $10,000</SelectItem>
+                          <SelectItem value="₹30,000+" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">$10,000+</SelectItem>
                           <SelectItem value="discuss" className="text-white hover:bg-pink-600 focus:bg-pink-600 focus:text-white text-sm sm:text-base">Let's discuss</SelectItem>
                         </SelectContent>
                       </Select>
