@@ -77,19 +77,19 @@ const Contact = () => {
     {
       icon: <Mail className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: "Email",
-      info: "hello@pixelbloom.com",
+      info: "gouthamkrishnan991@gmail.com",
       description: "Send us an email anytime"
     },
     {
       icon: <Phone className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: "Phone",
-      info: "+1 (555) 123-4567",
+      info: "+91 8589055868",
       description: "Call us during business hours"
     },
     {
       icon: <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: "Location",
-      info: "Your City, State",
+      info: "Desam,Kerala",
       description: "Serving clients nationwide"
     },
     {
