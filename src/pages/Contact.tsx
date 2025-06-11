@@ -196,7 +196,7 @@ const Contact = () => {
                           <SelectItem value="maintenance" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white text-sm sm:text-base">Website Maintenance</SelectItem>
                           <SelectItem value="multiple" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white text-sm sm:text-base">Multiple Services</SelectItem>
                           <SelectItem value="consultation" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white text-sm sm:text-base">Free Consultation</SelectItem>
-                          <SelectItem value="consultation" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white text-sm sm:text-base">Meta Ads Setup</SelectItem>
+                          <SelectItem value="metaads" className="text-white hover:bg-purple-600 focus:bg-purple-600 focus:text-white text-sm sm:text-base">Meta Ads Setup</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
